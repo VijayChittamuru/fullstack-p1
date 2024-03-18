@@ -1,4 +1,7 @@
 $(document).ready(function(){
+  toastr.options = {
+    'closeButton': true,
+  };
   // On click action for the reset button
   $('#resetButton').click(() => {
     toastr.info('Form has been reset.');
@@ -28,27 +31,22 @@ $(document).ready(function(){
   
   function submitActions() {
     event.preventDefault();
-    var valid = true;
-    const details = [$("#username"), 
-                     $("#firstName"),
-                     $("#lastName"),
-                     $("#phone"),
-                     $("#fax"),
-                     $("#email")];
-    details.forEach(field => {
-      if(field.val() == "") {
-        field.closest('.form-group').addClass('has-error');
-        valid = false;
+    const details = [{ field: $("#username"), label: "Username" },
+                     { field: $("#firstName"), label: "First Name" },
+                     { field: $("#lastName"), label: "Last Name" },
+                     { field: $("#phone"), label: "Phone" },
+                     { field: $("#fax"), label: "Fax" },
+                     { field: $("#email"), label: "Email" }];
+    details.forEach(item => {
+      if(item.field.val() == "") {
+        item.field.closest('.form-group').addClass('has-error');
+        toastr.error("Missing " + item.label);
       }
       else {
-        field.closest('.form-group').removeClass('has-error');
+        item.field.closest('.form-group').removeClass('has-error');
       }
     });
-    
-    if(!valid) {
-      toastr.error("Missing info. Please check marked fields");
-      return;
-    }
+
 
     if($("#cost").val() == ""){
       toastr.error("Cost not calculated, please check the dates.");
