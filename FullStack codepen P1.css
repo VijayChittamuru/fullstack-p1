@@ -1,0 +1,26 @@
+.form-group {
+  margin-bottom: 0;
+}
+
+/* Needed because the phone icon is smaller than the other two for some bizarre reason*/
+.input-group-addon .fa-phone {
+  font-size: 125%;
+}
+
+input[type='radio'] {
+    accent-color: #4169E1;
+    margin-bottom: 10px
+}
+
+input[type='range'] {
+  margin-top: -7px;
+  margin-bottom: 17px
+}
+
+hr {
+  margin-top:4px
+}
+
+.btn {
+  width:100%;
+}
